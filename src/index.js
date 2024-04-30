@@ -1,3 +1,5 @@
+import './styles/index.css';
+
 console.log('Hello, World!');
 
 const numbers = [2, 3, 5];
