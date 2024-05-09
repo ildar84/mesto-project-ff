@@ -1,6 +1,10 @@
 // @todo: Темплейт карточки
 // @todo: DOM узлы
 // @todo: Функция создания карточки
+import '../pages/index.css';
+
+
+
 const cardPlace = document.querySelector('.places__list'),
       cardTemplate = document.querySelector('#card-template').content;
 
