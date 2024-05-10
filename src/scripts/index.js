@@ -2,6 +2,7 @@
 // @todo: DOM узлы
 // @todo: Функция создания карточки
 import '../pages/index.css';
+import { initialCards } from './cards';
 
 
 
