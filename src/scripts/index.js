@@ -12,9 +12,6 @@ const popupTypeEdit = document.querySelector('.popup_type_edit');
 const profileAddButton = document.querySelector('.profile__add-button');
 const popupTypeNewCard = document.querySelector('.popup_type_new-card'); 
 const popup = document.querySelectorAll('.popup');
-// const popupClose = popupTypeNewCard.querySelector('.popup__close');
-// const popupTypeImage = document.querySelector('.popup_type_image');
-// const cardImage = document.querySelectorAll('.card__image');        
 const editForm = document.querySelector('form[name=edit-profile]');
 const inputName = editForm.querySelector('input[name=name]');
 const inputDescr = editForm.querySelector('input[name=description]');
@@ -62,11 +59,6 @@ function clickImage(evt) {
   popupCaption.textContent = openImage.closest('.card').querySelector('.card__title').textContent;
   openModal(popupTypeImage);
 }
-
-
-
-
-
 
 profileAddButton.addEventListener('click', () => openModal(popupTypeNewCard));
 
