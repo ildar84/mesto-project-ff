@@ -49,7 +49,6 @@ function handleNewCard(evt) {
   card.link = newLink.value;
   card.alt = newName.value;
   cardPlace.prepend(createCard(card, deleteCard, likeCard, clickImage));
-  formAddCard.reset();
   closeModal(popupTypeNewCard);
 }
 
