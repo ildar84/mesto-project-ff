@@ -1,10 +1,10 @@
-function openModal(win) {
-	win.classList.add('popup_is-opened');
+function openModal(popup) {
+	popup.classList.add('popup_is-opened');
 	document.addEventListener('keydown', closeModalEsc);
 }
 
-function closeModal(win) {
-	win.classList.remove('popup_is-opened');
+function closeModal(popup) {
+	popup.classList.remove('popup_is-opened');
 	document.removeEventListener('keydown', closeModalEsc);
 }
 
@@ -20,9 +20,9 @@ function closeModalOverlay(evt) {
 	}
 }
 
-function allCloseModal(win) {
-	win.querySelector('.popup__close').addEventListener('click', () => closeModal(win));
-	win.addEventListener('click', closeModalOverlay);
+function setEventListenersToClosePopups(popup) {
+	popup.querySelector('.popup__close').addEventListener('click', () => closeModal(popup));
+	popup.addEventListener('click', closeModalOverlay);
 }
 
-export { openModal, closeModal, allCloseModal };
+export { openModal, closeModal, setEventListenersToClosePopups };
