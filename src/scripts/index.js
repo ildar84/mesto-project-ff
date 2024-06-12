@@ -5,6 +5,7 @@ import '../pages/index.css';
 import { initialCards } from './cards';
 import { createCard, deleteCard, likeCard } from './card';
 import { openModal, closeModal, setEventListenersToClosePopups } from './modal';
+import { enableValidation, clearValidation } from './validation';
 
 const cardPlace = document.querySelector('.places__list');
 const profileEditButton = document.querySelector('.profile__edit-button');     
@@ -29,11 +30,38 @@ function addCard(cardElement) {
   cardPlace.append(cardElement);
 }
 
-function openEditProfileForm() {
-  openModal(popupTypeEdit);
-  inputName.value = nameInput.textContent;
-  inputDescr.value = jobInput.textContent;
-}
+// function openEditProfileForm() {
+//   openModal(popupTypeEdit);
+//   inputName.value = nameInput.textContent;
+//   inputDescr.value = jobInput.textContent;
+// }
+
+// function renderLoading(isLoading, button) {
+//   if(isLoading) {
+//     button.textContent = 'Сохранение...'; 
+//   }
+//   else {
+//     button.textContent = 'Сохранить';
+//   }
+// }
+
+// function openPopup(popup) {
+//   const form = popup.querySelector('.popup__form');
+//   if(form != null) {
+//     form.reset();
+//   }
+//   openModal(popup);
+//   if(popup === editPopup) {
+//     inputName.value = nameInput.textContent;
+//     inputDescr.value = jobInput.textContent;
+//   }
+//   clearValidation(popup, {
+//     inputSelector: '.popup__input',
+//     submitButtonSelector: '.popup__button',
+//     inactiveButtonClass: 'popup__button_disabled',
+//     inputErrorClass: 'popup__input_type_error'
+//   });
+// }
 
 function submitEditProfileForm(evt) {
   evt.preventDefault();
@@ -43,14 +71,31 @@ function submitEditProfileForm(evt) {
 }
 
 function handleNewCard(evt) {
-  evt.preventDefault(); 
+  evt.preventDefault();
   const card = {};
   card.name = newName.value;
   card.link = newLink.value;
   card.alt = newName.value;
   cardPlace.prepend(createCard(card, deleteCard, likeCard, clickImage));
   closeModal(popupTypeNewCard);
+
 }
+
+enableValidation({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  
+});
+
+// clearValidation(popup, {
+//   inputSelector: '.popup__input',
+//   submitButtonSelector: '.popup__button',
+//   inactiveButtonClass: 'popup__button_disabled',
+//   inputErrorClass: 'popup__input_type_error'
+// }); 
 
 function clickImage(evt) {
   const openImage = evt.target;
