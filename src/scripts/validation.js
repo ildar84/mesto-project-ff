@@ -26,7 +26,7 @@ const isValid = (formElement, inputElement, inputErrorClass) => {
 const hasInvalidInput = (inputList) => {
     return inputList.some((inputElement) => {
         return !inputElement.validity.valid;
-    })
+    });
 };
 
 const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => {

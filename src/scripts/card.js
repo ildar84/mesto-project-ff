@@ -29,4 +29,3 @@ function likeCard(evt) {
 } 
 
 export { createCard, deleteCard, likeCard };
-

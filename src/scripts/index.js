@@ -36,32 +36,24 @@ function addCard(cardElement) {
 //   inputDescr.value = jobInput.textContent;
 // }
 
-// function renderLoading(isLoading, button) {
-//   if(isLoading) {
-//     button.textContent = 'Сохранение...'; 
-//   }
-//   else {
-//     button.textContent = 'Сохранить';
-//   }
-// }
 
-// function openPopup(popup) {
-//   const form = popup.querySelector('.popup__form');
-//   if(form != null) {
-//     form.reset();
-//   }
-//   openModal(popup);
-//   if(popup === editPopup) {
-//     inputName.value = nameInput.textContent;
-//     inputDescr.value = jobInput.textContent;
-//   }
-//   clearValidation(popup, {
-//     inputSelector: '.popup__input',
-//     submitButtonSelector: '.popup__button',
-//     inactiveButtonClass: 'popup__button_disabled',
-//     inputErrorClass: 'popup__input_type_error'
-//   });
-// }
+function openPopup(popup) {
+  const form = popup.querySelector('.popup__form');
+  if(form != null) {
+    form.reset();
+  }
+  openModal(popup);
+  if(popup === popupTypeEdit) {
+    inputName.value = nameInput.textContent;
+    inputDescr.value = jobInput.textContent;
+  }
+  clearValidation(popup, {
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__button',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__input_type_error'
+  });
+}
 
 function submitEditProfileForm(evt) {
   evt.preventDefault();
@@ -90,12 +82,7 @@ enableValidation({
   
 });
 
-// clearValidation(popup, {
-//   inputSelector: '.popup__input',
-//   submitButtonSelector: '.popup__button',
-//   inactiveButtonClass: 'popup__button_disabled',
-//   inputErrorClass: 'popup__input_type_error'
-// }); 
+
 
 function clickImage(evt) {
   const openImage = evt.target;
@@ -104,9 +91,9 @@ function clickImage(evt) {
   openModal(popupTypeImage);
 }
 
-profileAddButton.addEventListener('click', () => openModal(popupTypeNewCard));
+profileAddButton.addEventListener('click', () => openPopup(popupTypeNewCard));
 
-profileEditButton.addEventListener('click', openEditProfileForm);
+profileEditButton.addEventListener('click', () => openPopup(popupTypeEdit));
 
 formAddCard.addEventListener('submit', handleNewCard);
 
