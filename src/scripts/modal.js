@@ -1,6 +1,5 @@
 function openModal(popup) {
 	popup.classList.add('popup_is-opened');
-	document.querySelector('form[name=new-place]').reset();
 	document.addEventListener('keydown', closeModalEsc);
 }
 
