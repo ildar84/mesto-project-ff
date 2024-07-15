@@ -1,5 +1,5 @@
 import '../pages/index.css';
-import { createCard, handleDeleteCard, likeCard, currentCard, currentCardId } from './card';
+import { createCard, likeCard } from './card';
 import { openModal, closeModal, setEventListenersToClosePopups } from './modal';
 import { enableValidation, clearValidation } from './validation';
 import { getUserData, getInitialCards, updateUserData, createNewCard, updateAvatar, deleteCard} from './api';
@@ -26,6 +26,8 @@ const editAvatarPopup = document.querySelector('.popup_type_edit-avatar');
 const editAvatarFormElement = document.querySelector('form[name=edit-avatar]');
 const avatarLinkInput = editAvatarFormElement.querySelector('.popup__input_type_url');
 let userId = null;
+let currentCard;
+let currentCardId;
 export const deleteCardPopup = document.querySelector('.popup_type_delete');
 const deleteCardFormElement = document.querySelector('form[name=delete-card]');
 
@@ -53,13 +55,15 @@ function dataLoading(isLoading, button) {
 function openPopup(popup) {
   const formElement = popup.querySelector('.popup__form');
   clearValidation(formElement, validationConfig);
-  
   openModal(popup);
-  if(popup === popupTypeEdit) {
-    inputName.value = nameInput.textContent;
-    inputDescr.value = jobInput.textContent;
-  }
-  
+}
+
+function openPopupEditProfile(popup) {
+  const formElement = popup.querySelector('.popup__form');
+  clearValidation(formElement, validationConfig);
+  openModal(popup);
+  inputName.value = nameInput.textContent;
+  inputDescr.value = jobInput.textContent;
 }
 
 function submitEditProfileForm(evt) {
@@ -87,6 +91,12 @@ function editAvatar(evt) {
     })
     .catch(err => console.log(err))
     .finally(() => dataLoading(false, button));
+}
+
+function handleDeleteCard(cardElement, cardId) {
+  openModal(deleteCardPopup);
+  currentCardId = cardId;
+  currentCard = cardElement;
 }
 
 function handleNewCard(evt) {
@@ -133,7 +143,7 @@ profileImage.addEventListener('click', () => {
   openPopup(editAvatarPopup);
 });
 
-profileEditButton.addEventListener('click', () => openPopup(popupTypeEdit));
+profileEditButton.addEventListener('click', () => openPopupEditProfile(popupTypeEdit));
 
 profileAddButton.addEventListener('click', () => openPopup(popupTypeNewCard));
 
